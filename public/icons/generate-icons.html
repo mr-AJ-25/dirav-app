@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Icons</title>
+</head>
+<body>
+  <h1>Icon Generator - Right-click and Save each icon</h1>
+  <p>Save these as PNG files in the /public/icons/ folder</p>
+  
+  <div id="icons"></div>
+  
+  <script>
+    const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+    const container = document.getElementById('icons');
+    
+    sizes.forEach(size => {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      
+      // Create gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#7C3AED');
+      gradient.addColorStop(1, '#C026D3');
+      
+      // Draw rounded rectangle
+      const radius = size * 0.1875; // 96/512 ratio
+      ctx.beginPath();
+      ctx.moveTo(radius, 0);
+      ctx.lineTo(size - radius, 0);
+      ctx.quadraticCurveTo(size, 0, size, radius);
+      ctx.lineTo(size, size - radius);
+      ctx.quadraticCurveTo(size, size, size - radius, size);
+      ctx.lineTo(radius, size);
+      ctx.quadraticCurveTo(0, size, 0, size - radius);
+      ctx.lineTo(0, radius);
+      ctx.quadraticCurveTo(0, 0, radius, 0);
+      ctx.closePath();
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      
+      // Draw letter D
+      ctx.fillStyle = 'white';
+      ctx.font = `bold ${size * 0.47}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('D', size / 2, size / 2 + size * 0.02);
+      
+      // Draw decorative circles
+      ctx.fillStyle = 'rgba(255,255,255,0.3)';
+      ctx.beginPath();
+      ctx.arc(size * 0.74, size * 0.27, size * 0.078, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.fillStyle = 'rgba(255,255,255,0.15)';
+      ctx.beginPath();
+      ctx.arc(size * 0.82, size * 0.74, size * 0.117, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Create wrapper
+      const wrapper = document.createElement('div');
+      wrapper.style.margin = '20px';
+      wrapper.style.display = 'inline-block';
+      wrapper.innerHTML = `<p>icon-${size}x${size}.png</p>`;
+      wrapper.appendChild(canvas);
+      container.appendChild(wrapper);
+    });
+  </script>
+</body>
+</html>
