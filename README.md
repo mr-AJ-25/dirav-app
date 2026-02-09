@@ -418,8 +418,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 If you have any questions or need help, please:
 
-- Open an [Issue](https://github.com/YOUR_USERNAME/dirav-app/issues)
-- Email: your.email@example.com
+- Open an [Issue](https://github.com/mr-AJ-25/dirav-app/issues)
+- Email: ayubjbrael@gmail.com
 
 ---
 
